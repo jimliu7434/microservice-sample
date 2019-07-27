@@ -1,0 +1,19 @@
+{
+  "name": "microservice-sample",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/jimliu7434/microservice-sample.git",
+  "author": "jimliu7434 <jimliu7434@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "start2": "node index.js 81"
+  },
+  "dependencies": {
+    "ioredis": "^4.11.2",
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "uuid": "^3.3.2"
+  }
+}
