@@ -6,8 +6,10 @@
   "author": "jimliu7434 <jimliu7434@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node index.js",
-    "start2": "node index.js 81"
+    "start": "node index.js 80",
+    "start2": "node index.js 81",
+    "start3": "node index.js 82",
+    "start4": "node index.js 83"
   },
   "dependencies": {
     "ioredis": "^4.11.2",

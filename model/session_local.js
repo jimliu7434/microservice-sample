@@ -1,4 +1,5 @@
 const base = require('./session_base.js');
+const config = require('../config.js');
 
 class Session extends base{
     constructor() {
@@ -17,12 +18,14 @@ class Session extends base{
             });
         }, 30000);
 
-        setInterval(() => {
-            [...that.Data.entries()].forEach(([key, obj]) => {
-                console.log(`${key}: ${JSON.stringify(obj)}`);
-            });
-            console.log('---')
-        }, 10000);
+        if(config.showSessions === '1') {
+            setInterval(() => {
+                [...that.Data.entries()].forEach(([key, obj]) => {
+                    console.log(`${key}: ${JSON.stringify(obj)}`);
+                });
+                console.log('---')
+            }, 10000);
+        }
     }
 
     Get(key) {
