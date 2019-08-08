@@ -20,7 +20,7 @@ class Pods {
         this.redis.on('ready', async () => {
             console.log(`pods service ready`);
             const host = `127.0.0.1:${that.port}`;
-            that.redis.rpush('podslist', host);
+            that.redis.sadd('podslist', host);
             await that.getPods();
         });
 
@@ -53,7 +53,7 @@ class Pods {
     }
 
     async getPods() {
-        this.list = new Set(await this.redis.lrange('podslist', 0, -1));
+        this.list = new Set(await this.redis.smembers('podslist'));
     }
 
     async showPods() {
@@ -63,9 +63,11 @@ class Pods {
         console.log('---');
     }
 
-    leave() {
+    async leave() {
         const host = `127.0.0.1:${this.port}`;
         this.pub.publish("removepods", host);
+        await this.redis.srem('podslist', host);
+        await this.getPods();
         console.log(`※ I'm leaved from ip ${host} !`);
     }
 }

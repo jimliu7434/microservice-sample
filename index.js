@@ -32,11 +32,18 @@ app.listen(port, async () => {
             await PodsService1.getPods();
             PodsService1.showPods();
         }, 10000);
+
+        setTimeout(async() => {
+            await PodsService1.leave();
+            console.log(`remove this pod before exit`);
+            process.exit();
+        }, 60000);
     }
     if (config.showRedisPubSub === '1') {
         const PodsService2 = new (require('./service/pods2.js'))({ port });
-        setInterval(() => {
-            PodsService2.leave();
-        }, 120000);
+        setTimeout(async () => {
+            await PodsService2.leave();
+            process.exit();
+        }, 60000);
     }
 });

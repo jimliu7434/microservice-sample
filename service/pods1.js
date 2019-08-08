@@ -14,13 +14,18 @@ class Pods {
 
         this.redis.on('ready', async () => {
             console.log(`pods service ready`);
-            that.redis.rpush('podslist', `127.0.0.1:${that.port}`);
+            that.redis.sadd('podslist', `127.0.0.1:${that.port}`);
             await that.getPods();
         });
     }
 
     async getPods() {
-        this.list = new Set(await this.redis.lrange('podslist', 0, -1));
+        this.list = new Set(await this.redis.smembers('podslist'));
+    }
+
+    async leave() {
+        await this.redis.srem('podslist', `127.0.0.1:${this.port}`);
+        await this.getPods();
     }
 
     showPods() {
