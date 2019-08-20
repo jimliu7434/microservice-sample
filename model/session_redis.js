@@ -1,6 +1,5 @@
 const base = require('./session_base.js');
 const Redis = require('ioredis');
-const config = require('../config.js');
 
 class Session extends base{
     constructor() {
@@ -13,8 +12,7 @@ class Session extends base{
             keepAlive: true,
         });
         this.store.on('ready',  () => {
-            if(config.showSessions === '1')
-                console.log(`outside store ready`);
+            console.log(`[Example01] Redis is ready`);
         });
         this.isAsync = true;
     }

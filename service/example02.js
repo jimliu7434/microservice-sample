@@ -1,6 +1,6 @@
 const Redis = require('ioredis');
 
-class Pods {
+class Example {
     constructor({ port }) {
         const that = this;
         this.port = port;
@@ -13,7 +13,7 @@ class Pods {
         });
 
         this.redis.on('ready', async () => {
-            console.log(`pods service ready`);
+            console.log(`[Example02] Redis is ready`);
             that.redis.sadd('podslist', `127.0.0.1:${that.port}`);
             await that.getPods();
         });
@@ -30,10 +30,10 @@ class Pods {
 
     showPods() {
         for (const ip of this.list) {
-            console.log(`pods: ${ip}`);
+            console.log(`[Example02] Service: ${ip}`);
         }
         console.log('---');
     }
 }
 
-module.exports = Pods;
+module.exports = Example;

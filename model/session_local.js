@@ -1,7 +1,6 @@
 const base = require('./session_base.js');
-const config = require('../config.js');
 
-class Session extends base{
+class Session extends base {
     constructor() {
         super();
         this.Data = new Map();
@@ -12,20 +11,18 @@ class Session extends base{
         const that = this;
         setInterval(() => {
             [...that.Info.entries()].forEach(([key, obj]) => {
-                if(obj.ExpiredUnixTSMS < Number(new Date())) {
+                if (obj.ExpiredUnixTSMS < Number(new Date())) {
                     this.Destroy(key);
                 }
             });
         }, 30000);
 
-        if(config.showSessions === '1') {
-            setInterval(() => {
-                [...that.Data.entries()].forEach(([key, obj]) => {
-                    console.log(`${key}: ${JSON.stringify(obj)}`);
-                });
-                console.log('---')
-            }, 10000);
-        }
+        setInterval(() => {
+            [...that.Data.entries()].forEach(([key, obj]) => {
+                console.log(`[Example01] ${key}: ${JSON.stringify(obj)}`);
+            });
+            console.log('---')
+        }, 10000);
     }
 
     Get(key) {
@@ -37,13 +34,13 @@ class Session extends base{
             ExpiredUnixTSMS: Number(new Date()) + this.maxAge,
         });
         this.Data.set(key, data);
-        return ;
+        return;
     }
 
     Destroy(key) {
         this.Info.delete(key);
         this.Data.delete(key);
-        return ; 
+        return;
     }
 }
 

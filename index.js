@@ -1,49 +1,31 @@
-const Koa = require('koa');
-const bodyParser = require('koa-bodyparser');
-const Router = require('koa-router');
+
 const config = require('./config.js');
-const LoginHandler = require('./handler/login.js');
-const SessionMiddleware = require('./middleware/session.js');
-const SessionModel = new (require('./model/session_local.js'))();
-const SessionStoreModel = new (require('./model/session_redis.js'))();
 
-const app = new Koa();
-const router = new Router();
-
-app.use(bodyParser());
-app.use(SessionMiddleware(SessionModel));
-app.use(SessionMiddleware(SessionStoreModel));
-
-router.post('/login', LoginHandler.login);
-router.post('/logout', LoginHandler.logout);
-router.get('/session', LoginHandler.session);
-router.get('/sessionAsync', LoginHandler.sessionAsync);
-router.post('/loginAsync', LoginHandler.loginAsync);
-router.post('/logoutAsync', LoginHandler.logoutAsync);
-app.use(router.routes());
-
-const port = Number(process.argv[2] || 80);
-app.listen(port, async () => {
-    console.log(`listening ${port}`);
-
-    if (config.showRedisList === '1') {
-        const PodsService1 = new (require('./service/pods1.js'))({ port });
-        setInterval(async () => {
-            await PodsService1.getPods();
-            PodsService1.showPods();
-        }, 10000);
-
-        setTimeout(async() => {
-            await PodsService1.leave();
-            console.log(`remove this pod before exit`);
-            process.exit();
-        }, 60000);
+(async () => {
+    const port = Number(process.argv[2] || 80);
+    switch (config.ExampleNo) {
+        case 1: {
+            await (require('./exampleHandler/example01.js'))({ port });
+            break;
+        }
+        case 2: {
+            await (require('./exampleHandler/example02.js'))({ port });
+            break;
+        }
+        case 3: {
+            await (require('./exampleHandler/example03.js'))({ port });
+            break;
+        }
+        case 4: {
+            await (require('./exampleHandler/example04.js'))({ port });
+            break;
+        }
+        case 5: {
+            await (require('./exampleHandler/example05.js'))({ port });
+            break;
+        }
+        default: {
+            throw new Error(`config.ExampleNo ${config.ExampleNo} is not implemented`);
+        }
     }
-    if (config.showRedisPubSub === '1') {
-        const PodsService2 = new (require('./service/pods2.js'))({ port });
-        setTimeout(async () => {
-            await PodsService2.leave();
-            process.exit();
-        }, 60000);
-    }
-});
+})();

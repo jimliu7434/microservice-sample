@@ -9,9 +9,31 @@ accepts@^1.3.5:
     mime-types "~2.1.24"
     negotiator "0.6.2"
 
+amqplib@0.3.2:
+  version "0.3.2"
+  resolved "http://10.1.100.61:80/npm/amqplib/-/amqplib-0.3.2.tgz#e77d8fb3842ebcae78cf1c930c490d1e954f4297"
+  integrity sha1-532Ps4QuvK54zxyTDEkNHpVPQpc=
+  dependencies:
+    bitsyntax "~0.0.4"
+    buffer-more-ints "0.0.2"
+    readable-stream "1.x >=1.1.9"
+    when "~3.6.2"
+
 any-promise@^1.1.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/any-promise/-/any-promise-1.3.0.tgz#abc6afeedcea52e809cdc0376aed3ce39635d17f"
+
+bitsyntax@~0.0.4:
+  version "0.0.4"
+  resolved "http://10.1.100.61:80/npm/bitsyntax/-/bitsyntax-0.0.4.tgz#eb10cc6f82b8c490e3e85698f07e83d46e0cba82"
+  integrity sha1-6xDMb4K4xJDj6FaY8H6D1G4MuoI=
+  dependencies:
+    buffer-more-ints "0.0.2"
+
+buffer-more-ints@0.0.2:
+  version "0.0.2"
+  resolved "http://10.1.100.61:80/npm/buffer-more-ints/-/buffer-more-ints-0.0.2.tgz#26b3885d10fa13db7fc01aae3aab870199e0124c"
+  integrity sha1-JrOIXRD6E9t/wBquOquHAZngEkw=
 
 bytes@3.1.0:
   version "3.1.0"
@@ -61,6 +83,11 @@ cookies@~0.7.1:
 copy-to@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/copy-to/-/copy-to-2.0.1.tgz#2680fbb8068a48d08656b6098092bdafc906f4a5"
+
+core-util-is@~1.0.0:
+  version "1.0.2"
+  resolved "http://10.1.100.61:80/npm/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
+  integrity sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
 
 debug@^3.1.0:
   version "3.2.6"
@@ -143,7 +170,7 @@ inflation@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/inflation/-/inflation-2.0.0.tgz#8b417e47c28f925a45133d914ca1fd389107f30f"
 
-inherits@2.0.4:
+inherits@2.0.4, inherits@~2.0.1:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.4.tgz#0fa2c64f932917c3433a0ded55363aae37416b7c"
 
@@ -279,6 +306,11 @@ negotiator@0.6.2:
   version "0.6.2"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.2.tgz#feacf7ccf525a77ae9634436a64883ffeca346fb"
 
+node-uuid@:
+  version "1.4.8"
+  resolved "http://10.1.100.61:80/npm/node-uuid/-/node-uuid-1.4.8.tgz#b040eb0923968afabf8d32fb1f17f1167fdab907"
+  integrity sha1-sEDrCSOWivq/jTL7HxfxFn/auQc=
+
 on-finished@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/on-finished/-/on-finished-2.3.0.tgz#20f1336481b083cd75337992a16971aa2d906947"
@@ -303,6 +335,15 @@ qs@^6.5.2:
   version "6.7.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
 
+rabbit.js@^0.4.4:
+  version "0.4.4"
+  resolved "http://10.1.100.61:80/npm/rabbit.js/-/rabbit.js-0.4.4.tgz#84a97b2fba35fd21af435dfd7cbd9b31895f1da4"
+  integrity sha1-hKl7L7o1/SGvQ139fL2bMYlfHaQ=
+  dependencies:
+    amqplib "0.3.2"
+    node-uuid ""
+    readable-stream "~1 >=1.0.2"
+
 raw-body@^2.3.3:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/raw-body/-/raw-body-2.4.1.tgz#30ac82f98bb5ae8c152e67149dac8d55153b168c"
@@ -311,6 +352,16 @@ raw-body@^2.3.3:
     http-errors "1.7.3"
     iconv-lite "0.4.24"
     unpipe "1.0.0"
+
+"readable-stream@1.x >=1.1.9", "readable-stream@~1 >=1.0.2":
+  version "1.1.14"
+  resolved "http://10.1.100.61:80/npm/readable-stream/-/readable-stream-1.1.14.tgz#7cf4c54ef648e3813084c636dd2079e166c081d9"
+  integrity sha1-fPTFTvZI44EwhMY23SB54WbAgdk=
+  dependencies:
+    core-util-is "~1.0.0"
+    inherits "~2.0.1"
+    isarray "0.0.1"
+    string_decoder "~0.10.x"
 
 redis-commands@1.5.0:
   version "1.5.0"
@@ -346,6 +397,11 @@ standard-as-callback@^2.0.1:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.5.0.tgz#161c7dac177659fd9811f43771fa99381478628c"
 
+string_decoder@~0.10.x:
+  version "0.10.31"
+  resolved "http://10.1.100.61:80/npm/string_decoder/-/string_decoder-0.10.31.tgz#62e203bc41766c6c28c9fc84301dab1c5310fa94"
+  integrity sha1-YuIDvEF2bGwoyfyEMB2rHFMQ+pQ=
+
 toidentifier@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/toidentifier/-/toidentifier-1.0.0.tgz#7e1be3470f1e77948bc43d94a3c8f4d7752ba553"
@@ -372,6 +428,11 @@ uuid@^3.3.2:
 vary@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
+
+when@~3.6.2:
+  version "3.6.4"
+  resolved "http://10.1.100.61:80/npm/when/-/when-3.6.4.tgz#473b517ec159e2b85005497a13983f095412e34e"
+  integrity sha1-RztRfsFZ4rhQBUl6E5g/CVQS404=
 
 ylru@^1.2.0:
   version "1.2.1"
