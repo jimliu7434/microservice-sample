@@ -6,7 +6,7 @@ module.exports = {
     session: (ctx) => {
         ctx.body = {
             session: ctx.session,
-        }
+        };
         return ctx.status = 200;
     },
     logout: (ctx) => {
@@ -21,7 +21,7 @@ module.exports = {
     sessionAsync: async (ctx) => {
         ctx.body = {
             session: await ctx.sessionAsync,
-        }
+        };
         return ctx.status = 200;
     },
     logoutAsync: async (ctx) => {

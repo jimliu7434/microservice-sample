@@ -6,6 +6,7 @@
   "author": "jimliu7434 <jimliu7434@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "lint": "yarn eslint ./*.js ./*/*.js",
     "start": "node index.js 80",
     "start2": "node index.js 81",
     "start3": "node index.js 82",
@@ -18,5 +19,8 @@
     "koa-router": "^7.4.0",
     "rabbit.js": "^0.4.4",
     "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^6.2.2"
   }
 }

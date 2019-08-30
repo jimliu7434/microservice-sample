@@ -12,7 +12,7 @@ class Session extends base{
             keepAlive: true,
         });
         this.store.on('ready',  () => {
-            console.log(`[Example01] Redis is ready`);
+            console.log('[Example01] Redis is ready');
         });
         this.isAsync = true;
     }

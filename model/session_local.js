@@ -10,7 +10,7 @@ class Session extends base {
 
         const that = this;
         setInterval(() => {
-            [...that.Info.entries()].forEach(([key, obj]) => {
+            [...that.Info.entries(),].forEach(([key, obj,]) => {
                 if (obj.ExpiredUnixTSMS < Number(new Date())) {
                     this.Destroy(key);
                 }
@@ -18,15 +18,15 @@ class Session extends base {
         }, 30000);
 
         setInterval(() => {
-            [...that.Data.entries()].forEach(([key, obj]) => {
+            [...that.Data.entries(),].forEach(([key, obj,]) => {
                 console.log(`[Example01] ${key}: ${JSON.stringify(obj)}`);
             });
-            console.log('---')
+            console.log('---');
         }, 10000);
     }
 
     Get(key) {
-        return this.Data.get(key)
+        return this.Data.get(key);
     }
 
     Set(key, data) {

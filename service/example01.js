@@ -21,5 +21,5 @@ module.exports = () => {
     router.post('/loginAsync', LoginHandler.loginAsync);
     router.post('/logoutAsync', LoginHandler.logoutAsync);
     app.use(router.routes());
-    return { app };
-}
+    return { app, };
+};

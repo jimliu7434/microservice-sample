@@ -14,7 +14,7 @@ module.exports = async () => {
                     (mm > 9 ? '' : '0') + mm,
                     (ss > 9 ? '' : '0') + ss,
                 ].join(':');
-            }
+            };
 
             console.log(`${logLevel}  ${getDateStr(date)}  [${serverName}]\t${msg}`);
         },
@@ -48,4 +48,4 @@ module.exports = async () => {
         }
     }, 1000);
 
-}
+};

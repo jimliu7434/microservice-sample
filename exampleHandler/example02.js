@@ -1,5 +1,5 @@
-module.exports = async ({ port }) => {
-    const ServiceDiscovery02 = new (require('../service/example02.js'))({ port });
+module.exports = async ({ port, }) => {
+    const ServiceDiscovery02 = new (require('../service/example02.js'))({ port, });
     setInterval(async () => {
         await ServiceDiscovery02.getPods();
         ServiceDiscovery02.showPods();
@@ -7,7 +7,7 @@ module.exports = async ({ port }) => {
 
     setTimeout(async() => {
         await ServiceDiscovery02.leave();
-        console.log(`[Example02] Remove this instance before exit`);
+        console.log('[Example02] Remove this instance before exit');
         process.exit();
     }, 60000);
-}
+};

@@ -15,7 +15,7 @@ module.exports = (model) => {
                     return sess;
                 },
                 set: async (newValue) => {
-                    throw new Error(`Please Use 'await ctx.SetSession'`);
+                    throw new Error('Please Use \'await ctx.SetSession\'');
                 },
             });
 
@@ -70,5 +70,5 @@ module.exports = (model) => {
         }
 
         return await next();
-    }
-}
+    };
+};

@@ -2,7 +2,7 @@ const Redis = require('ioredis');
 const MQ = require('../class/mq');
 
 class Example {
-    constructor({ port }) {
+    constructor({ port, }) {
         const that = this;
         this.port = port;
 
@@ -15,19 +15,19 @@ class Example {
 
         this.redis = new Redis(redisOpt);
 
-        this.pubAdd = new MQ({ type: 'PUBLISH', queue: 'addservice' });
-        this.subAdd = new MQ({ type: 'SUBSCRIBE', queue: 'addservice' });
-        this.pubRemove = new MQ({ type: 'PUBLISH', queue: 'removeservice' });
-        this.subRemove = new MQ({ type: 'SUBSCRIBE', queue: 'removeservice' });
+        this.pubAdd = new MQ({ type: 'PUBLISH', queue: 'addservice', });
+        this.subAdd = new MQ({ type: 'SUBSCRIBE', queue: 'addservice', });
+        this.pubRemove = new MQ({ type: 'PUBLISH', queue: 'removeservice', });
+        this.subRemove = new MQ({ type: 'SUBSCRIBE', queue: 'removeservice', });
 
         this.redis.on('ready', async () => {
-            console.log(`[Example05] redis ready`);
+            console.log('[Example05] redis ready');
             const host = `127.0.0.1:${that.port}`;
             that.redis.sadd('podslist', host);
             await that.getPods();
         });
 
-        that.subAdd.on('data', ({msg, ack}) => {
+        that.subAdd.on('data', ({msg, ack,}) => {
             console.log(`[Example05] Someone joined : ${msg}`);
             that.list.add(msg);
             that.showPods();
@@ -36,7 +36,7 @@ class Example {
             }
         });
 
-        that.subRemove.on('data', ({msg, ack}) => {
+        that.subRemove.on('data', ({msg, ack,}) => {
             console.log(`[Example05] Someone leaved : ${msg}`);
             that.list.delete(msg);
             that.showPods();
