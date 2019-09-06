@@ -24,6 +24,14 @@ const config = require('./config.js');
             await (require('./exampleHandler/example05.js'))({ port, });
             break;
         }
+        case 6: {
+            await (require('./exampleHandler/example06.js'))({ port, });
+            break;
+        }
+        case 7: {
+            await (require('./exampleHandler/example07.js'))({ port, });
+            break;
+        }
         default: {
             throw new Error(`config.ExampleNo ${config.ExampleNo} is not implemented`);
         }

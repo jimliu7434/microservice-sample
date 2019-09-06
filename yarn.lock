@@ -901,6 +901,15 @@ qs@^6.5.2:
   version "6.7.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
 
+rabbit.js-fix@^0.4.5:
+  version "0.4.5"
+  resolved "http://10.1.100.61:80/npm/rabbit.js-fix/-/rabbit.js-fix-0.4.5.tgz#27be71eb37c67f0518392c6d01604bb6ec6e48a6"
+  integrity sha512-usNDoinlsO1qd5E4gxp8iVvq60kLSU3BBCifq7dnjtqWvxHfzi7VpexAHXZvx5BaQX/wh3gSdTdrhMgMVFYGkg==
+  dependencies:
+    amqplib "0.3.2"
+    node-uuid ""
+    readable-stream "~1 >=1.0.2"
+
 rabbit.js@^0.4.4:
   version "0.4.4"
   resolved "http://10.1.100.61:80/npm/rabbit.js/-/rabbit.js-0.4.4.tgz#84a97b2fba35fd21af435dfd7cbd9b31895f1da4"

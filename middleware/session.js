@@ -14,7 +14,7 @@ module.exports = (model) => {
                     const sess = await model.Get(key);
                     return sess;
                 },
-                set: async (newValue) => {
+                set: async () => {
                     throw new Error('Please Use \'await ctx.SetSession\'');
                 },
             });
