@@ -2,12 +2,12 @@ const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 const Router = require('koa-router');
 const Redis = require('ioredis');
-const Handler = require('../handler/leaderboard_basic.js');
-// const Handler = require('../handler/leaderboardRangeTime_local.js');
+const BasicHandler = require('../handler/leaderboard_basic.js');
+const UnionStoreHandler = require('../handler/leaderboardRangeTime_unionstore.js');
 
 module.exports = () => {
     const app = new Koa();
-    const router = new Router();
+    
     const redis = new Redis({
         host: '127.0.0.1',
         port: 6379,
@@ -20,13 +20,23 @@ module.exports = () => {
         ctx.RedisService = redis;
         return await next();
     });
+    const rootRouter = new Router();
+    const basicRouter = new Router();
+    const unionStoreRouter = new Router();
 
-    router.post('/apia', Handler.apia);
-    router.post('/apib', Handler.apib);
-    router.post('/apic', Handler.apic);
-    router.get('/leaderboard', Handler.leaderboard);
+    basicRouter.post('/apia', BasicHandler.apia);
+    basicRouter.post('/apib', BasicHandler.apib);
+    basicRouter.post('/apic', BasicHandler.apic);
+    basicRouter.get('/leaderboard', BasicHandler.leaderboard);
 
-    app.use(router.routes());
+    unionStoreRouter.post('/apia', UnionStoreHandler.apia);
+    unionStoreRouter.post('/apib', UnionStoreHandler.apib);
+    unionStoreRouter.post('/apic', UnionStoreHandler.apic);
+    unionStoreRouter.get('/leaderboard', UnionStoreHandler.leaderboard);
+
+    rootRouter.use('/1', basicRouter.routes());
+    rootRouter.use('/2', unionStoreRouter.routes());
+    app.use(rootRouter.routes());
 
     return { app, };
 };

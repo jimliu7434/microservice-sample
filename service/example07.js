@@ -2,13 +2,13 @@ const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 const Router = require('koa-router');
 const Redis = require('ioredis');
-const Handler = require('../handler/leaderboardRangeTime_mq.js');
+const SetTimeoutHandler = require('../handler/leaderboardRangeTime_settimeout.js');
+const MqDelayHandler = require('../handler/leaderboardRangeTime_mqdelay.js');
 const MQ = require('../class/mq_delaymsg.js');
 const DELAY = 0.5 * 60 * 1000;
 
 module.exports = () => {
     const app = new Koa();
-    const router = new Router();
     const redis = new Redis({
         host: '127.0.0.1',
         port: 6379,
@@ -35,12 +35,23 @@ module.exports = () => {
         return await next();
     });
 
-    router.post('/apia', Handler.apia);
-    router.post('/apib', Handler.apib);
-    router.post('/apic', Handler.apic);
-    router.get('/leaderboard', Handler.leaderboard);
+    const rootRouter = new Router();
+    const settimoutRouter = new Router();
+    const mqDelayRouter = new Router();
 
-    app.use(router.routes());
+    settimoutRouter.post('/apia', SetTimeoutHandler.apia);
+    settimoutRouter.post('/apib', SetTimeoutHandler.apib);
+    settimoutRouter.post('/apic', SetTimeoutHandler.apic);
+    settimoutRouter.get('/leaderboard', SetTimeoutHandler.leaderboard);
+
+    mqDelayRouter.post('/apia', MqDelayHandler.apia);
+    mqDelayRouter.post('/apib', MqDelayHandler.apib);
+    mqDelayRouter.post('/apic', MqDelayHandler.apic);
+    mqDelayRouter.get('/leaderboard', MqDelayHandler.leaderboard);
+
+    rootRouter.use('/3', settimoutRouter.routes());
+    rootRouter.use('/4', mqDelayRouter.routes());
+    app.use(rootRouter.routes());
 
     return { app, };
 };
