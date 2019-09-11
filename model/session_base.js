@@ -1,15 +1,15 @@
 class Session {
     constructor() {}
 
-    async Get(key) {
+    async Get() {
         throw new ReferenceError('Not Implemented');
     }
 
-    async Set(key, data) {
+    async Set() {
         throw new ReferenceError('Not Implemented');
     }
 
-    async Destroy(key) {
+    async Destroy() {
         throw new ReferenceError('Not Implemented');
     }
 }

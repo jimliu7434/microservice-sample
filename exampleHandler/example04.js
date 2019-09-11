@@ -1,5 +1,6 @@
 module.exports = async () => {
-    const LoggingService = new (require('../service/example04.js'))({
+    // LoggingService
+    new (require('../service/example04.js'))({
         type: 'WRITER',
         handler: (serverName, logLevel, msg) => {
             const date = new Date();
